@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+
+
+        {% block Contenidoquecambia %}
+
+        <form action="/buscar/" method = 'GET'>
+
+        <input type="text", name = "nombre_playa", id = "nombre_playa">
+
+        <input type="submit", value = "Buscar">
+
+        </form>
+
+        {% endblock %}
+
+
+
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'Preentrega3App/js/scripts.js' %}"></script>
+    </body>
+</html>

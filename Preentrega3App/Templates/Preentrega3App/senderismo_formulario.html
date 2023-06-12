@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+
+
+        {% block Contenidoquecambia %}
+
+        {% if formulario.errors  %}
+
+        <p>Los datos estan mal</p>
+
+        {% endif %}
+
+        <form action="" method = 'POST'> {% csrf_token %}
+
+        <table>
+            {{formulario.as_table}}
+        </table>
+
+        <input type="submit", value = "Enviar">
+
+        </form>
+
+        {% endblock %}
+
+</html>

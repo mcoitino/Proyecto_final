@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+{% block Contenidoquecambia %}
+
+        <!-- Header-->
+        <header class="py-5">
+            <div class="container px-lg-5">
+                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                    <div class="m-4 m-lg-5">
+                        <h1 class="display-5 fw-bold">Descubriendo Mallorca</h1>
+                        <p class="fs-4">En este blog puedes encontrar información, consejos e ideas para disfrutar de los mejores lugares de la isla.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Page Content-->
+        <section class="pt-4">
+            <div class="row">
+                <!-- Page Features-->
+                    
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <a href="{% url 'Playas' %}">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div>
+                                <h2 class="fs-4 fw-bold">Playas</h2>
+                                <a href="{% url 'Playas Formulario' %}" class="btn btn-primary btn-sm" href="#!">Agregar nuevo</a>
+                                <a href="{% url 'Busqueda Playa' %}" class="btn btn-primary btn-sm" href="#!">Buscar una playa</a>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <a href="{% url 'Pueblos' %}">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
+                                <h2 class="fs-4 fw-bold">Pueblos</h2>
+                                <a href="{% url 'Pueblos Formulario' %}" class="btn btn-primary btn-sm" href="#!">Agregar nuevo</a>
+                            </div>
+                        </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <a href="{% url 'Senderismo' %}">
+                        <div class="card bg-light border-0 h-100">
+                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bootstrap"></i></div>
+                                <h2 class="fs-4 fw-bold">Senderismo</h2>
+                                <a href="{% url 'Senderismo Formulario' %}" class="btn btn-primary btn-sm" href="#!">Agregar nuevo</a>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% endblock %}
