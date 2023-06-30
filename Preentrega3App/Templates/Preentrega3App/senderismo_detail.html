@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+{% block Contenidoquecambia %}
+
+<section class="pt-4">
+    <div class="container px-lg-5">
+        <!-- Page Features-->
+        <div class="row gx-lg-5">
+
+
+            <div class="col-lg-6 col-xxl-7 mb-5">
+                <br>
+                <h2> <i>{{object.nombre_ruta}}</i> </h2>
+                <br>
+                    <div>
+                    <img src="{{ object.img_senderismo.url }}" alt="Imagen de la ruta"  width="100%">
+                    </div>
+
+                    <div class="senderismo-container{}" >
+                        <br>
+                    <p>Dificultad: {{object.dificultad}}</p>
+                    <p>Altitud máxima: {{object.altitud_max}}</p>
+                    <p>Localidad de origen: {{object.localidad_origen}}</p>
+                    <p>{{object.descripcion_ruta}}</p>
+
+                    <p><i>Añadido {{object.fecha_creado|date:"j F, Y"}} por {{object.usuario_creacion}}</i></p>
+
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'SenderismoEditar' pk=senderismo.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'SenderismoBorrar' pk=senderismo.id %}" class="btn btn-primary btn-sm">Borrar</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

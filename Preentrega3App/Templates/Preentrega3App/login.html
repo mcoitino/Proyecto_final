@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+
+{% block Contenidoquecambia %}
+
+<div class="container px-lg-5">
+  <div class="p-4 p-lg-2 bg-light rounded-3 text-left">
+      <div class="m-4 m-lg-7 mb-4">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-sm">Iniciar sesión</button>
+    </form>
+    <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+</html>

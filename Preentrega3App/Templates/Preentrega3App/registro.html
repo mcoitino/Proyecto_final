@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+
+{% block Contenidoquecambia %}
+
+<div class="container px-lg-5">
+    <div class="p-4 p-lg-2 bg-light rounded-3 text-left">
+        <div class="m-4 m-lg-7 mb-4">
+    
+    <div style="text-align: center;">
+    <h2>Registro de usuario</h2>
+    </div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-sm">Registrarme</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+</html>

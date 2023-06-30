@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+{% block Contenidoquecambia %}
+
+<section class="pt-4">
+    <div class="container px-lg-5">
+        <div class="row gx-lg-5">
+
+            <div class="card bg-light border-0 h-auto">
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                        <h2> <i> {{object.asunto_contacto}}</i> </h2>
+                        <p>Nombre: <i>{{object.nombre_contacto}}</i></p>
+                        <p>Email: <i>{{object.mail_contacto}}</i></p>
+                        <p>Texto: <i>{{object.texto_contacto}}</i></p>
+                        
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

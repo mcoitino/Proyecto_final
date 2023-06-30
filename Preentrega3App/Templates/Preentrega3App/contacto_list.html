@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+{% block Contenidoquecambia %}
+
+<section class="pt-4">
+    <div class="container px-lg-5">
+        <div class="p-1 p-lg-0 bg-light rounded-3 text-center">
+            <div class="m-4 m-lg-7 mb-4">
+
+            <h2>Mensajes recibidos</h2>
+
+            </div>
+            </div>
+            {% if object_list %}
+
+            {% for contacto in object_list %}
+            <div class="col-lg-4 mb-5">
+
+                <div class="card bg-light border-0 h-auto">
+                    <div class="card-body text-left p-1 p-lg-2 pt-0 pt-lg-0">
+                        <p class="fs-7"> Asunto: {{contacto.asunto_contacto}} </p>
+                        <p class="fs-7"> Enviado por: {{contacto.nombre_contacto}} </p>
+                        
+                        <a href="{% url 'ContactoDetail' pk=contacto.id %}" class="btn btn-primary btn-sm">Ver más</a>
+
+                    </div>
+                </div>
+                
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <p>Aún no hay información disponible</p>
+            {% endif %}
+
+        
+    </div>
+</section>
+
+{% endblock %}

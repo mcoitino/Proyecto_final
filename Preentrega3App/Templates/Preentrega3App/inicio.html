@@ -1,0 +1,61 @@
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+{% block Contenidoquecambia %}
+
+<!-- Header-->
+<header class="py-5">
+    <div class="container px-lg-5">
+        <div class="p-4 p-lg-2 bg-light rounded-3 text-center">
+            <div class="m-4 m-lg-7 mb-4">
+                <h1 class="display-5 fw-bold" >Descubre Mallorca</h1>
+            </div>
+
+            <div>
+                <img src="{% static 'images/Seu_de_Mallorca.jpg' %}" alt="Mi imagen" width = "1000">
+                <p class="fs-3 mt-3">En este sitio puedes encontrar información para disfrutar de los mejores lugares de la isla.</p>
+
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Page Content-->
+<section class="pt-8">
+    <div class="page-content">
+        <!-- Page Features-->
+        <div class="row">
+            <div class="col-lg-4 col-lg-4 mb-5">
+                
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <a href="{% url 'PlayasList' %}" style="text-decoration: none;"> <h2 class="fs-4 fw-bold">Playas</h2></a>
+                        <p class="mb-0">Entre sus casi 300 playas y calas de aguas turquesa, puedes encontrar pequeñas calas escondidas, extensas playas rodeadas de naturaleza y playas rodeadas de servicios. Descubre algunas de las más bellas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-lg-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <a href="{% url 'PueblosList' %}" style="text-decoration: none;"> <h2 class="fs-4 fw-bold">Pueblos</h2></a>
+                        <p class="mb-0">
+                            En la isla y particularmente en la sierra Tramuntana podemos visitar pueblos con magníficos paisajes, carismática arquitectura y gran riqueza cultural e histórica</p>
+                    </div>
+                </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-lg-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <a href="{% url 'SenderismoList' %}"style="text-decoration: none;"><h2 class="fs-4 fw-bold">Senderismo</h2></a>
+                        <p class="mb-0">Si bien la isla es conocida por sus playas y buen clima, tiene una gran cantidad de rutas de senderismo rodeadas de naturaleza que la convierten en un destino disfrutable durante todo el año.</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+            
+
+        </div>
+</section>
+
+{% endblock %}

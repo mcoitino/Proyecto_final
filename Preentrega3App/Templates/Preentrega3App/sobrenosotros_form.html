@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+
+
+        {% block %}
+
+        <div class="container px-lg-5">
+                <div class="p-4 p-lg-2 bg-light rounded-3 text-left">
+                    <div class="m-4 m-lg-7 mb-4">
+
+        {% if formulario.errors  %}
+
+        <p>Los datos estan mal</p>
+
+        {% endif %}
+
+        <form method = 'POST'> 
+            
+        {% csrf_token %}
+        
+
+        {{form.as_p}}
+
+
+        <input type="submit", value = "Enviar" class="btn btn-primary btn-sm"> <a href="{% url 'Sobre Nosotros' %}" class="btn btn-primary btn-sm">Cancelar</a>
+
+                
+        
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+
+</html>

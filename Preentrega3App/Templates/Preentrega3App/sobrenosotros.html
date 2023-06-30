@@ -4,8 +4,24 @@
 {% load static %}
 
 {% block Contenidoquecambia %}
-<h1> Sobre mí</h1>
-<p>Soy Mayra. Vivo en la isla hace dos años en los cuales he visitado todos los lugares que he podido, cada fin se semana. En este blog comparto, a medida que los voy conociendo, lugares y experiencias que vale la pena disfrutar. 
-    Espero que te sea de ayuda si te encuentras en Mallorca o piensas visitarla próximamente.</p>
-    
+<div class="container px-lg-5">
+    <div class="p-4 p-lg-2 bg-light rounded-3 text-left">
+        <div class="m-4 m-lg-7 mb-4">
+
+{% for sobrenosotros in object_list %}
+
+<h1> {{ sobrenosotros.titulo_sobre_nosotros }}</h1>
+
+<p> {{ sobrenosotros.texto_sobre_nosotros }} </p>
+
+{% if request.user.is_authenticated and request.user.is_superuser%}
+
+<a href="{% url 'SobreNosotrosEditar' sobrenosotros.id %}" class="btn btn-primary btn-sm">Editar</a>
+
+{% endif %}
+
+{% endfor %}
+</div>
+</div>
+</div>    
 {% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+{% block Contenidoquecambia %}
+
+<section class="pt-4">
+    <div class="container px-lg-5">
+        <div class="p-4 p-lg-2 bg-light rounded-3 text-left">
+            <div class="m-4 m-lg-7 mb-4">
+
+
+            <div class="col-lg-6 col-xxl-4 mb-5">
+                <div class="text-center mb-4">
+                        <h2>Perfil de usuario</h2>
+                </div>
+                        <p>Nombre de usuario: {{ user.username }}</p>
+                        <p>Descripción: {{ profile.descripcion }}</p>
+                        <p>Email: {{ user.email }}</p>
+                        <p>Link a página web: {{ profile.link_web }}</p>
+
+                        <a href="{% url 'EditarPerfil' %}" class="btn btn-primary btn-sm">Editar Perfil</a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

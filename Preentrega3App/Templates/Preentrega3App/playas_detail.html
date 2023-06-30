@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "Preentrega3App/padre.html" %}
+{% load static %}
+{% block Contenidoquecambia %}
+
+<section class="pt-4">
+    <div class="container px-lg-5">
+        <!-- Page Features-->
+        <div class="row gx-lg-5">
+
+
+            <div class="col-lg-6 col-xxl-7 mb-5">
+                        <br>
+                        <h2> <i>{{object.nombre_playa}}</i> </h2>
+                        <br>
+                    
+                        <div>
+                        <img src="{{ object.img_playa.url }}" alt="Imagen de la playa" width="100%">
+                        </div>
+                        <div class="playa-container{}" >
+                            <br>
+                            <p>{{object.descripcion_playa}}</p>
+                        </div>
+                        <p><i>Añadido {{object.fecha_creado|date:"j F, Y"}} por {{object.usuario_creacion}}</i></p>
+                        
+
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'PlayasEditar' pk=playas.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'PlayasBorrar' pk=playas.id %}" class="btn btn-primary btn-sm">Borrar</a>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

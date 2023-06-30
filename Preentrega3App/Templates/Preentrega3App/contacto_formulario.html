@@ -5,25 +5,37 @@
 {% load static %}
 
 
-        {% block Contenidoquecambia %}
+{% block Contenidoquecambia %}
+<div class="container px-lg-5">
+    <div class="p-4 p-lg-2 bg-light rounded-3 text-center">
+        <div class="m-4 m-lg-7 mb-4">
 
-        {% if formulario.errors  %}
+            {% if formulario.errors  %}
 
-        <p>Los datos estan mal</p>
+            <p>Hay un error en los datos ingresados.</p>
 
-        {% endif %}
+            {% endif %}
 
-        <form action="" method = 'POST'> {% csrf_token %}
+            <form action="" method = 'POST'> {% csrf_token %}
 
-        <table>
-            {{formulario.as_table}}
-        </table>
+                <table>
 
-        <input type="submit", value = "Enviar">
+                    <h2>Contacta con Nosotros</h2>
 
-        </form>
+                    <p>Si tienes algún tipo de pregunta o comentario, por favor completa el siguiente formulario para contactar con nosotros. Gracias.</p> 
 
-        {% endblock %}
+                    {{formulario.as_table}}
+                </table>
+                <div class="d-flex justify-content-start mt-4" >
+                    <input type="submit", value = "Enviar" class="btn btn-primary btn-sm" >
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
 
 
 
