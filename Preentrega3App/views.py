@@ -132,7 +132,7 @@ class pueblosDetail (DetailView):
     model = Pueblos
     template_name = "Preentrega3App/pueblos_detail.html"
 
-class pueblosUpdate (LoginRequiredMixin,UpdateView):
+class pueblosUpdate (UpdateView):
     model = Pueblos
     success_url = "/puebloslist/"
     fields = ["nombre_pueblo", "descripcion_pueblo", "desc_abreviada_pueblo", "img_pueblo"]
@@ -147,7 +147,7 @@ class pueblosUpdate (LoginRequiredMixin,UpdateView):
         return form
 
 
-class pueblosCreate (LoginRequiredMixin,CreateView):
+class pueblosCreate (CreateView):
     model = Pueblos
     success_url = "/puebloslist/"
     fields = ["nombre_pueblo", "descripcion_pueblo", "desc_abreviada_pueblo", "img_pueblo"]
@@ -159,6 +159,12 @@ class pueblosCreate (LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.usuario_creacion = self.request.user.username
         return super().form_valid(form)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if not self.request.user.is_superuser:
+            form.fields['img_pueblo'].disabled = True
+        return form
 
 class pueblosDelete (LoginRequiredMixin,DeleteView):
     model = Pueblos
@@ -190,7 +196,7 @@ class senderismoUpdate (LoginRequiredMixin,UpdateView):
         return form
 
 
-class senderismoCreate (LoginRequiredMixin,CreateView):
+class senderismoCreate (CreateView):
     model = Senderismo
     success_url = "/senderismolist/"
     fields = ["nombre_ruta", "descripcion_ruta", "dificultad", "altitud_max", "localidad_origen", "img_senderismo"]
@@ -202,6 +208,12 @@ class senderismoCreate (LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.usuario_creacion = self.request.user.username
         return super().form_valid(form)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if not self.request.user.is_superuser:
+            form.fields['img_senderismo'].disabled = True
+        return form
 
 class senderismoDelete (LoginRequiredMixin,DeleteView):
     model = Senderismo
@@ -255,8 +267,14 @@ class playasCreate (CreateView):
     def form_valid(self, form):
         form.instance.usuario_creacion = self.request.user.username
         return super().form_valid(form)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if not self.request.user.is_superuser:
+            form.fields['img_playa'].disabled = True
+        return form
 
-class playasDelete (LoginRequiredMixin,DeleteView):
+class playasDelete (DeleteView):
     model = Playas
     success_url = "/playaslist/"
 
