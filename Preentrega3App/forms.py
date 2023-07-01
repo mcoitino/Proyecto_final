@@ -51,6 +51,8 @@ class edicionUsuarioForm(UserChangeForm):
         fields = ['username', 'email', 'descripcion', 'link_web', 'image']
         help_texts = {k:"" for k in fields}
 
+
+
 class changePasswordForm(PasswordChangeForm):
     new_password1 = forms.CharField(label='Nueva Contraseña', widget=forms.PasswordInput)
 

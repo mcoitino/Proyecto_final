@@ -72,12 +72,12 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     descripcion = models.CharField(max_length=200)
     link_web = models.URLField(default='')
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to='imagenes', blank=True, null=True, default="")
 
     
 class Avatar(models.Model):
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='es', null = True, blank = True, default='avatares/avatar_pred.png')
+    image = models.ImageField(upload_to='avatares', null = True, blank = True)
 
 
 

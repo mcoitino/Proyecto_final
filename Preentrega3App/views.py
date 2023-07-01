@@ -321,7 +321,7 @@ def registro(request):
     else:
         form = registroUsuarioForm()
 
-    return render (request, 'Preentrega3App/registro.html', {'form': form})
+    return render (request, 'Preentrega3App/registro.html', {'form': form, 'profile': profile})
 
 class Logout(LogoutView):
     template_name= 'Preentrega3App/logout.html'
@@ -335,10 +335,10 @@ def editarPerfil(request):
     if request.method == 'POST':
         form = edicionUsuarioForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            form.save()
             user.username = form.cleaned_data['username']
             user.email = form.cleaned_data['email']
             user.save()
+            form.save()
             return redirect('/inicio/')
     else:
         initial_data = {'email': user.email,'username': user.username,}
@@ -373,4 +373,7 @@ def changePassword(request):
         form = changePasswordForm(usuario)
 
     return render (request, 'cambio_password.html', {'form':form})
+
+
+
 

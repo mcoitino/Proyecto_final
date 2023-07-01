@@ -21,8 +21,10 @@
             <div class="container px-lg-5">
                 <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+    
                         <li class="nav-item"><a class="nav-link" href="{% url 'Sobre Nosotros' %}">Sobre Nosotros</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Contacto Formulario' %}">Contacto</a></li>
 
@@ -37,13 +39,14 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Registro' %}">Registrarme</a></li>
                         {% endif %}
-
+                            
 
                         {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Cerrar sesión</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'VerPerfil' %}">{{ user.username }}</a></li>
-                        {% if avatar.exists %}
-                            <img src="{{ avatar_instance.image.url }}" alt="Avatar">
+
+                        {% if request.user.userprofile.image %}
+                        <img src="{{ request.user.userprofile.image.url }}" style="width: 50px; height: 50px; border-radius: 50%;"/>
                         {% endif %}
                         
                         {% endif %}
@@ -52,7 +55,6 @@
                 </div>
             </div>
         </nav>
-
 
         {% block Contenidoquecambia %}
 
