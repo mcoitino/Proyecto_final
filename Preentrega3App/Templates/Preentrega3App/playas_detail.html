@@ -29,7 +29,7 @@
                         <p><i>Añadido {{object.fecha_creado|date:"j F, Y"}} por {{object.usuario_creacion}}</i></p>
                         
 
-                        {% if request.user.is_authenticated %}
+                        {% if request.user.is_authenticated and request.user.username == object.usuario_creacion %}
                         <a href="{% url 'PlayasEditar' pk=playas.id %}" class="btn btn-primary btn-sm">Editar</a>
                         <a href="{% url 'PlayasBorrar' pk=playas.id %}" class="btn btn-primary btn-sm">Borrar</a>
                         {% endif %}

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Preentrega3App'
+    'Preentrega3App',
+    'Usuarios'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'Preentrega_3.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r'C:\Users\Mayra\Desktop\Proyecto final\Preentrega_3\Preentrega3App\Templates\Preentrega3App'],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'Usuarios','Templates', 'Usuarios'),
+            os.path.join(BASE_DIR, 'Preentrega3App', 'Templates', 'Preentrega3App')
+                ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

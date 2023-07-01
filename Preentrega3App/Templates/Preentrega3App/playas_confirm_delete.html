@@ -15,7 +15,8 @@
         <p>¿Estás seguro de que deseas eliminar el registro {{object.nombre_playa}}?</p>
 
 
-        <input type="submit" class="btn btn-primary btn-sm" style="width: 120px; height: 30px;margin-right: 10px; margin-left: 10px; margin-bottom: 5px;", value = "Borrar">
+        <input type="submit" class="btn btn-primary btn-sm" style="width: 120px; height: 30px;margin-right: 10px; margin-left: 10px; margin-bottom: 5px;", value = "Borrar"> 
+        <a href="{% url 'PlayasDetail' pk=playas.id %}" class="btn btn-primary btn-sm" style="width: 120px; height: 30px;margin-right: 10px; margin-bottom: 5px;">Cancelar</a>
 
         </form>
 

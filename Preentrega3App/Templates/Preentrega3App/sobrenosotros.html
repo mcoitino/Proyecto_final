@@ -8,20 +8,23 @@
     <div class="p-4 p-lg-2 bg-light rounded-3 text-left">
         <div class="m-4 m-lg-7 mb-4">
 
-{% for sobrenosotros in object_list %}
+            {% if object_list %}
+            {% for sobrenosotros in object_list %}
+                <h1>{{ sobrenosotros.titulo_sobre_nosotros }}</h1>
+                <p>{{ sobrenosotros.texto_sobre_nosotros }}</p>
+                
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'SobreNosotrosEditar' pk=sobrenosotros.id %}" class="btn btn-primary btn-sm">Editar</a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'SobreNosotrosCrear' %}" class="btn btn-primary btn-sm">Añadir nuevo</a>
+            {% endif %}
+        {% endif %}
+        
 
-<h1> {{ sobrenosotros.titulo_sobre_nosotros }}</h1>
 
-<p> {{ sobrenosotros.texto_sobre_nosotros }} </p>
-
-<a href="{% url 'SobreNosotrosEditar' pk=sobrenosotros.id %}" class="btn btn-primary btn-sm">Editar</a>
-
-{% empty %}
-
-<a href="{% url 'SobreNosotrosCrear' %}" class="btn btn-primary btn-sm">Añadir nuevo</a>
-
-
-{% endfor %}
 </div>
 </div>
 </div>    
