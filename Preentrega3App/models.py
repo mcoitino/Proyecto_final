@@ -2,8 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-# Create your models here.
-
 class SobreNosotros(models.Model):
     titulo_sobre_nosotros = models.CharField(max_length=40)
     texto_sobre_nosotros = models.CharField(max_length=700)
@@ -75,9 +73,6 @@ class UserProfile(models.Model):
     image = models.ImageField(upload_to='imagenes', blank=True, null=True, default="")
 
     
-class Avatar(models.Model):
-    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='avatares', null = True, blank = True)
 
 
 

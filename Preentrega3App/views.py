@@ -13,59 +13,9 @@ from django.contrib.auth.views import LogoutView
 from django.utils import timezone
 from django.contrib import messages
 
-# Create your views here.
-
 
 def inicio(request):
     return render (request, 'inicio.html')
-
-def sobrenosotros (request):
-    return render (request, 'sobrenosotros.html')
-
-def playas(request):
-    return render (request, 'playas.html')
-
-def pueblos(request):
-    return render (request, 'pueblos.html')
-
-def senderismo(request):
-    return render (request, 'senderismo.html')
-
-def playasFormulario(request):
-    if request.method == "POST":
-        formulario = PlayasFormulario(request.POST)
-        if formulario.is_valid(): 
-            info = formulario.cleaned_data
-            playa = Playas (nombre_playa = info['nombre_playa'], descripcion_playa = info['descripcion_playa'], transporte_publico = info['transporte_publico'], servicios_playa = info['servicios_playa'],terreno = info['terreno'],distancia_ciudad = info['distancia_ciudad'])
-            playa.save()
-            return render (request,'Preentrega3App/index.html')
-    else:
-        formulario = PlayasFormulario()
-    return render (request, 'Preentrega3App/playas_formulario.html', {'formulario':formulario})
-
-def pueblosFormulario(request):
-    if request.method == "POST":
-        formulario = PueblosFormulario(request.POST)
-        if formulario.is_valid(): 
-            info = formulario.cleaned_data
-            pueblo = Pueblos (nombre_pueblo = info['nombre_pueblo'], descripcion_pueblo = info['descripcion_pueblo'], transporte_publico = info['transporte_publico'],distancia_ciudad_pueblo = info['distancia_ciudad_pueblo'])
-            pueblo.save()
-            return render (request,'Preentrega3App/index.html')
-    else:
-        formulario = PueblosFormulario()
-    return render (request, 'Preentrega3App/pueblos_formulario.html', {'formulario':formulario})
-
-def senderismoFormulario(request):
-    if request.method == "POST":
-        formulario = SenderismoFormulario(request.POST)
-        if formulario.is_valid(): 
-            info = formulario.cleaned_data
-            senderismo = Senderismo (nombre_ruta = info['nombre_ruta'], dificultad = info['dificultad'], recorrido = info['recorrido'], localidad_origen = info['localidad_origen'], descripcion_ruta = info['descripcion_ruta']) 
-            senderismo.save()
-            return render (request,'Preentrega3App/index.html')
-    else:
-        formulario = SenderismoFormulario()
-    return render (request, 'Preentrega3App/senderismo_formulario.html', {'formulario':formulario})
 
 def contactoFormulario(request):
     if request.method == "POST":
@@ -79,8 +29,74 @@ def contactoFormulario(request):
         formulario = ContactoFormulario()
     return render (request, 'Preentrega3App/contacto_formulario.html', {'formulario':formulario})
 
-def busquedaPlaya(request):
-    return render (request, "Preentrega3App/busqueda.html")
+class contactoList (ListView):
+    model = Contacto
+    template_name = "Preentrega3App/contacto_list.html"
+    
+class contactoDetail (DetailView):
+    model = Contacto
+    template_name = "Preentrega3App/contacto_detail.html"
+
+
+class sobreNosotrosCreate (CreateView):
+    model = SobreNosotros
+    success_url = "/sobrenosotros/"
+    fields = ["titulo_sobre_nosotros", "texto_sobre_nosotros"]
+
+class sobreNosotrosList (ListView):
+    model = SobreNosotros
+    template_name = "Preentrega3App/sobrenosotros.html"
+
+class sobreNosotrosUpdate (UpdateView):
+    model = SobreNosotros
+    success_url = "/sobrenosotros/"
+    fields = ["titulo_sobre_nosotros", "texto_sobre_nosotros"]
+
+
+class playasList (ListView):
+    model = Playas
+    template_name = "Preentrega3App/playas_list.html"
+
+class PlayasDetail (DetailView):
+    model = Playas
+    template_name = "Preentrega3App/playas_detail.html"
+
+class playasUpdate (UpdateView):
+    model = Playas
+    success_url = "/playaslist/"
+    fields = ["nombre_playa", "descripcion_playa", "desc_abreviada_playa", "img_playa"]
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if not self.request.user.is_superuser:
+            form.fields['img_playa'].disabled = True
+        return form
+
+class playasCreate (CreateView):
+    model = Playas
+    success_url = "/playaslist/"
+    fields = ["nombre_playa", "descripcion_playa", "desc_abreviada_playa", "img_playa"]
+
+    def form_valid(self, form):
+        form.instance.fecha_creado = timezone.now()
+        return super().form_valid(form)
+    
+    def form_valid(self, form):
+        form.instance.usuario_creacion = self.request.user.username
+        return super().form_valid(form)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if not self.request.user.is_superuser:
+            form.fields['img_playa'].disabled = True
+        return form
+
+class playasDelete (DeleteView):
+    model = Playas
+    success_url = "/playaslist/"
 
 def buscar_playa(request):
 
@@ -93,35 +109,6 @@ def buscar_playa(request):
 
     return render (request, 'Preentrega3App/playas_list.html', {playa: 'playa'})
 
-def buscar_pueblo(request):
-
-    if request.GET ["nombre_pueblo"]:
-        nombre = request.GET['nombre_pueblo']
-        pueblo = Pueblos.objects.filter(nombre_pueblo__icontains = nombre).first()
-
-        if pueblo:
-            return redirect ("PueblosDetail", pk=pueblo.id)
-
-    return render (request, 'Preentrega3App/pueblos_list.html', {pueblo: 'pueblo'})
-
-def buscar_senderismo(request):
-
-    if request.GET ["nombre_ruta"]:
-        nombre = request.GET['nombre_ruta']
-        senderismo = Senderismo.objects.filter(nombre_ruta__icontains = nombre).first()
-
-        if senderismo:
-            return redirect ("SenderismoDetail", pk=senderismo.id)
-
-    return render (request, 'Preentrega3App/senderismo_list.html', {senderismo: 'senderismo'})
-
-class playasList (ListView):
-    model = Playas
-    template_name = "Preentrega3App/playas_list.html"
-
-class PlayasDetail (DetailView):
-    model = Playas
-    template_name = "Preentrega3App/playas_detail.html"
 
 class pueblosList (ListView):
     model = Pueblos
@@ -170,6 +157,16 @@ class pueblosDelete (DeleteView):
     success_url = "/puebloslist/"
 
 
+def buscar_pueblo(request):
+
+    if request.GET ["nombre_pueblo"]:
+        nombre = request.GET['nombre_pueblo']
+        pueblo = Pueblos.objects.filter(nombre_pueblo__icontains = nombre).first()
+
+        if pueblo:
+            return redirect ("PueblosDetail", pk=pueblo.id)
+
+    return render (request, 'Preentrega3App/pueblos_list.html', {pueblo: 'pueblo'})
 
 
 class senderismoList (ListView):
@@ -219,66 +216,18 @@ class senderismoDelete (DeleteView):
     success_url = "/senderismolist/"
 
 
+def buscar_senderismo(request):
 
-class contactoList (ListView):
-    model = Contacto
-    template_name = "Preentrega3App/contacto_list.html"
-    
-class contactoDetail (DetailView):
-    model = Contacto
-    template_name = "Preentrega3App/contacto_detail.html"
+    if request.GET ["nombre_ruta"]:
+        nombre = request.GET['nombre_ruta']
+        senderismo = Senderismo.objects.filter(nombre_ruta__icontains = nombre).first()
 
-class sobreNosotrosCreate (CreateView):
-    model = SobreNosotros
-    success_url = "/sobrenosotros/"
-    fields = ["titulo_sobre_nosotros", "texto_sobre_nosotros"]
+        if senderismo:
+            return redirect ("SenderismoDetail", pk=senderismo.id)
 
-class sobreNosotrosList (ListView):
-    model = SobreNosotros
-    template_name = "Preentrega3App/sobrenosotros.html"
+    return render (request, 'Preentrega3App/senderismo_list.html', {senderismo: 'senderismo'})
 
-class sobreNosotrosUpdate (UpdateView):
-    model = SobreNosotros
-    success_url = "/sobrenosotros/"
-    fields = ["titulo_sobre_nosotros", "texto_sobre_nosotros"]
-    
 
-class playasUpdate (UpdateView):
-    model = Playas
-    success_url = "/playaslist/"
-    fields = ["nombre_playa", "descripcion_playa", "desc_abreviada_playa", "img_playa"]
-
-    def test_func(self):
-        return self.request.user.is_superuser
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        if not self.request.user.is_superuser:
-            form.fields['img_playa'].disabled = True
-        return form
-
-class playasCreate (CreateView):
-    model = Playas
-    success_url = "/playaslist/"
-    fields = ["nombre_playa", "descripcion_playa", "desc_abreviada_playa", "img_playa"]
-
-    def form_valid(self, form):
-        form.instance.fecha_creado = timezone.now()
-        return super().form_valid(form)
-    
-    def form_valid(self, form):
-        form.instance.usuario_creacion = self.request.user.username
-        return super().form_valid(form)
-    
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class)
-        if not self.request.user.is_superuser:
-            form.fields['img_playa'].disabled = True
-        return form
-
-class playasDelete (DeleteView):
-    model = Playas
-    success_url = "/playaslist/"
 
 def login_request (request):
     if request.method == 'POST':
