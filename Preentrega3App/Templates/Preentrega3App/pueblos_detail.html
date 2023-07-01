@@ -17,7 +17,12 @@
                         <br>
 
                         <div>
+                        {% if object.img_pueblo %}
                         <img src="{{ object.img_pueblo.url }}" alt="Imagen del pueblo"  width="100%">
+                        {% else %}
+                        <p><i>No hay imagen disponible</i></p>
+                        {% endif %}
+
                         </div>
                         <div class="pueblo-container{}" >
                         <br>

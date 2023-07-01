@@ -16,7 +16,15 @@
                 <h2> <i>{{object.nombre_ruta}}</i> </h2>
                 <br>
                     <div>
-                    <img src="{{ object.img_senderismo.url }}" alt="Imagen de la ruta"  width="100%">
+
+                        {% if object.img_senderismo %}
+                        <img src="{{ object.img_senderismo.url }}" alt="Imagen de la ruta"  width="100%">
+                        {% else %}
+                        <p><i>No hay imagen disponible</i></p>
+                        {% endif %}
+
+
+                    
                     </div>
 
                     <div class="senderismo-container{}" >

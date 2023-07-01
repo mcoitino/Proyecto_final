@@ -184,7 +184,7 @@ class senderismoDetail (DetailView):
 class senderismoUpdate (LoginRequiredMixin,UpdateView):
     model = Senderismo
     success_url = "/senderismolist/"
-    fields = ["nombre_ruta", "descripcion_ruta", "dificultad", "altitud_max", "localidad_origen", "img_senderismo"]
+    fields = ["nombre_ruta", "desc_abreviada_ruta", "descripcion_ruta", "dificultad", "altitud_max", "localidad_origen", "img_senderismo"]
 
     def test_func(self):
         return self.request.user.is_superuser
@@ -199,7 +199,7 @@ class senderismoUpdate (LoginRequiredMixin,UpdateView):
 class senderismoCreate (CreateView):
     model = Senderismo
     success_url = "/senderismolist/"
-    fields = ["nombre_ruta", "descripcion_ruta", "dificultad", "altitud_max", "localidad_origen", "img_senderismo"]
+    fields = ["nombre_ruta", "desc_abreviada_ruta", "descripcion_ruta", "dificultad", "altitud_max", "localidad_origen", "img_senderismo"]
 
     def form_valid(self, form):
         form.instance.fecha_creado = timezone.now()

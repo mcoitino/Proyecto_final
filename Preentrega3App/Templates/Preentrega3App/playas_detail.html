@@ -16,9 +16,12 @@
                         <h2> <i>{{object.nombre_playa}}</i> </h2>
                         <br>
                     
-                        <div>
+                        {% if object.img_playa %}
                         <img src="{{ object.img_playa.url }}" alt="Imagen de la playa" width="100%">
-                        </div>
+                        {% else %}
+                        <p><i>No hay imagen disponible</i></p>
+                        {% endif %}
+
                         <div class="playa-container{}" >
                             <br>
                             <p>{{object.descripcion_playa}}</p>
