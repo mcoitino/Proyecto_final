@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from .forms import registroUsuarioForm
 from django.contrib.auth.views import LogoutView
@@ -228,7 +228,10 @@ class contactoDetail (DetailView):
     model = Contacto
     template_name = "Preentrega3App/contacto_detail.html"
 
-
+class sobreNosotrosCreate (CreateView):
+    model = SobreNosotros
+    success_url = "/sobrenosotros/"
+    fields = ["titulo_sobre_nosotros", "texto_sobre_nosotros"]
 
 class sobreNosotrosList (ListView):
     model = SobreNosotros

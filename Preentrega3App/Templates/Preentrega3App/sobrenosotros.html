@@ -14,11 +14,12 @@
 
 <p> {{ sobrenosotros.texto_sobre_nosotros }} </p>
 
-{% if request.user.is_authenticated and request.user.is_superuser%}
+<a href="{% url 'SobreNosotrosEditar' pk=sobrenosotros.id %}" class="btn btn-primary btn-sm">Editar</a>
 
-<a href="{% url 'SobreNosotrosEditar' sobrenosotros.id %}" class="btn btn-primary btn-sm">Editar</a>
+{% empty %}
 
-{% endif %}
+<a href="{% url 'SobreNosotrosCrear' %}" class="btn btn-primary btn-sm">Añadir nuevo</a>
+
 
 {% endfor %}
 </div>

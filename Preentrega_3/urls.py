@@ -36,6 +36,7 @@ urlpatterns = [
     path('buscar-ruta/', views.buscar_senderismo, name = 'BuscarRuta'),
     path('senderismolist/', views.senderismoList.as_view(), name = 'SenderismoList'),
     path('sobrenosotros/editar/<int:pk>/', views.sobreNosotrosUpdate.as_view(), name='SobreNosotrosEditar'),
+    path('crearsobrenosotros', views.sobreNosotrosCreate.as_view(), name='SobreNosotrosCrear'),
     
 
     path('playaslist/', views.playasList.as_view(), name = 'PlayasList'),
