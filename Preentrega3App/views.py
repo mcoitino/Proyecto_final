@@ -10,7 +10,6 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
 from .forms import registroUsuarioForm
 from django.contrib.auth.views import LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.contrib import messages
 
@@ -166,7 +165,7 @@ class pueblosCreate (CreateView):
             form.fields['img_pueblo'].disabled = True
         return form
 
-class pueblosDelete (LoginRequiredMixin,DeleteView):
+class pueblosDelete (DeleteView):
     model = Pueblos
     success_url = "/puebloslist/"
 
@@ -181,7 +180,7 @@ class senderismoDetail (DetailView):
     model = Senderismo
     template_name = "Preentrega3App/senderismo_detail.html"
 
-class senderismoUpdate (LoginRequiredMixin,UpdateView):
+class senderismoUpdate (UpdateView):
     model = Senderismo
     success_url = "/senderismolist/"
     fields = ["nombre_ruta", "desc_abreviada_ruta", "descripcion_ruta", "dificultad", "altitud_max", "localidad_origen", "img_senderismo"]
@@ -215,7 +214,7 @@ class senderismoCreate (CreateView):
             form.fields['img_senderismo'].disabled = True
         return form
 
-class senderismoDelete (LoginRequiredMixin,DeleteView):
+class senderismoDelete (DeleteView):
     model = Senderismo
     success_url = "/senderismolist/"
 
@@ -354,8 +353,24 @@ def detalle_usuario(request):
         profile = UserProfile.objects.get(user=request.user.id)
 
     except UserProfile.DoesNotExist:
-        profile = UserProfile.objects.create(user=request.user)
+        profile= None
 
     return render (request, 'user_profile_detail.html', {'profile': profile})
 
+
+def changePassword(request):
+    usuario = User.objects.get(id=request.user.id)
+
+    if request.method == 'POST':
+        form = changePasswordForm(usuario, request.POST)
+        if form.is_valid():
+            new_password1 = form.cleaned_data['new_password1']
+            usuario.set_password(new_password1)
+            usuario.save()
+            return redirect('/inicio/')
+    
+    else:
+        form = changePasswordForm(usuario)
+
+    return render (request, 'cambio_password.html', {'form':form})
 
