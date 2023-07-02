@@ -23,7 +23,7 @@ def login_request (request):
             if user is not None:
                 login(request, user)
 
-                return render(request, 'Preentrega3App/inicio.html', {'mensaje': f'Bienvenido {user}'})
+                return render(request, 'Preentrega3App/inicio.html')
             
             else:
                 messages.error(request, 'Datos incorrectos')

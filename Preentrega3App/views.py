@@ -205,6 +205,7 @@ class senderismoCreate (CreateView):
         form = super().get_form(form_class)
         if not self.request.user.is_superuser:
             form.fields['img_senderismo'].disabled = True
+            
         return form
 
 class senderismoDelete (DeleteView):
