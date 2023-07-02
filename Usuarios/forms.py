@@ -23,6 +23,11 @@ class edicionUsuarioForm(UserChangeForm):
         fields = ['username', 'email', 'descripcion', 'link_web', 'image']
         help_texts = {k:"" for k in fields}
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        del self.fields['password']
+        
+
 
 
 class changePasswordForm(PasswordChangeForm):

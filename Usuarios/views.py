@@ -72,7 +72,7 @@ def editarPerfil(request):
             user.email = form.cleaned_data['email']
             user.save()
             form.save()
-            return redirect('/inicio/')
+            return redirect('/')
     else:
         initial_data = {'email': user.email,'username': user.username,}
         form = edicionUsuarioForm(instance=profile, initial=initial_data)
@@ -100,7 +100,7 @@ def changePassword(request):
             new_password1 = form.cleaned_data['new_password1']
             usuario.set_password(new_password1)
             usuario.save()
-            return redirect('/inicio/')
+            return redirect('/')
     
     else:
         form = changePasswordForm(usuario)
