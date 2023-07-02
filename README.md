@@ -24,8 +24,8 @@ Registro, login, logout, vista y edición de perfil
 
 - Gestión de contenido
 Permite crear. borrar y editar contenido de acuerdo al perfil del usuario.
-- Apartado sobre Nosotros
-- Apartado mensajes de contacto
-- Registros (Playas, Pueblos, Senderismo)
+  - Apartado sobre Nosotros
+  - Apartado mensajes de contacto
+  - Registros (Playas, Pueblos, Senderismo)
 
 Se incluye en el repositorio archivos con casos de prueba y link a un video mostrando el funcionamiento de la web.
