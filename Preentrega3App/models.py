@@ -14,7 +14,7 @@ class Playas(models.Model):
     nombre_playa = models.CharField(max_length=30)
     descripcion_playa = models.CharField(max_length=1200)
     desc_abreviada_playa = models.CharField(max_length=200)
-    img_playa = models.ImageField(upload_to='imagenes/', blank=True)
+    img_playa = models.ImageField(upload_to='imagenes/', blank=True, null=True)
     fecha_creado = models.DateTimeField(default=timezone.now)
     usuario_creacion = models.CharField(max_length=20, default="")
 
